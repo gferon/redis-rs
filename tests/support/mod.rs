@@ -127,7 +127,7 @@ impl TestContext {
             passwd: None,
         })
         .unwrap();
-        let con;
+        let mut con;
 
         let millisecond = Duration::from_millis(1);
         loop {
@@ -145,7 +145,7 @@ impl TestContext {
                 }
             }
         }
-        redis::cmd("FLUSHDB").execute(&con);
+        redis::cmd("FLUSHDB").execute(&mut con);
 
         TestContext {
             server: server,
